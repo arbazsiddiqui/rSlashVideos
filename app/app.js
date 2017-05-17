@@ -1,1 +1,1 @@
-angular.module('mealTimeVideos', ['playCtrl', 'playService']);
+angular.module('redditPlay', ['playCtrl', 'playService']);
