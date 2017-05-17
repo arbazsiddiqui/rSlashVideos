@@ -1,9 +1,10 @@
 angular.module('playService', [])
   .factory('Play', function ($http) {
     var playFactory = {};
-
-    playFactory.getVideos = function () {
-      return $http.get('https://api.reddit.com/r/videos/hot.json');
+    var baseUrl = 'https://api.reddit.com/r/';
+    playFactory.getVideos = function (subreddit, type) {
+      url = baseUrl+subreddit+'/'+type+'.json';
+      return $http.get(url);
     };
 
     return playFactory;

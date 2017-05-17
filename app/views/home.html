@@ -1,3 +1,8 @@
 <div ng-controller="PlayController">
-  <span ng-bind-html="url"></span>
+  <div ng-bind-html="playVideoUrl"></div>
+  <ul class="list-group">
+    <li ng-repeat="video in videos" class="list-group-item">
+        <a ng-click="playVideo(video.embedHtml)"><img width="150" height="150" ng-src="{{video.thumbnailUrl}}"></a>
+    </li>
+  </ul>
 </div>
