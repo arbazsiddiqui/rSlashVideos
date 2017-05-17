@@ -1,8 +1,41 @@
 <div ng-controller="PlayController">
-  <div ng-bind-html="playVideoUrl"></div>
-  <ul class="list-group">
-    <li ng-repeat="video in videos" class="list-group-item">
-        <a ng-click="playVideo(video.embedHtml)"><img width="150" height="150" ng-src="{{video.thumbnailUrl}}"></a>
-    </li>
-  </ul>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand">Reddit Play</a>
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="row">
+      <div id="srList">
+        <ul class="list-group">
+          <li  class="list-group-item">Videos</li>
+          <li  class="list-group-item">Funny</li>
+          <li  class="list-group-item">Documentaries</li>
+          <li  class="list-group-item">DIY</li>
+          <li  class="list-group-item">Music</li>
+
+        </ul>
+      </div>
+      <div id="content">
+        <div ng-bind-html="playVideoUrl"></div>
+      </div>
+      <div id="videoList">
+        <ul class="list-group">
+          <li ng-repeat="video in videos" class="list-group-item">
+            <a ng-click="playVideo(video.embedHtml)"><img width="175" height="125" ng-src="{{video.thumbnailUrl}}"></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
 </div>

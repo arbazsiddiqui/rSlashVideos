@@ -1,0 +1,37 @@
+.navbar-default {
+    background-color: #334858;
+    border-color: #334858;
+    min-height : 11%;
+    border-radius: 0;
+}
+
+.navbar-default .navbar-brand {
+    color: #fff;
+    padding-top: 23px;
+}
+
+#videoList {
+    position: fixed;
+    width: 21%;
+    background-color: #FFF;
+    overflow-y: scroll;
+    top: 12%;
+    bottom: 0;
+    left : 79%;
+}
+
+#content {
+    position: relative;
+    margin-left: 24%;
+    margin-right: 24%;
+}
+
+#srList {
+    position: fixed;
+    width: 21%;
+    background-color: #FFF;
+    overflow-y: scroll;
+    top: 12%;
+    bottom: 0;
+    left : 0;
+}
