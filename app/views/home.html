@@ -17,12 +17,19 @@
     <div class="row">
       <div id="srList">
         <ul class="list-group">
-          <li  class="list-group-item">Videos</li>
-          <li  class="list-group-item">Funny</li>
-          <li  class="list-group-item">Documentaries</li>
-          <li  class="list-group-item">DIY</li>
-          <li  class="list-group-item">Music</li>
-
+          <li ng-repeat="subreddit in subreddits" class="list-group-item">
+            <a ng-click="getVideosFromSubreddit(subreddit, 'hot', 100)">{{subreddit}}</a>
+          </li>
+          <li>
+            <form ng-submit="addSubreddit()">
+              <div class="input-group">
+                <input ng-model="sr" type="text" class="form-control" placeholder="subreddit">
+              <span class="input-group-btn">
+              <button class="btn btn-default" type="submit">Load</button>
+              </span>
+              </div>
+            </form>
+            </li>
         </ul>
       </div>
       <div id="content">

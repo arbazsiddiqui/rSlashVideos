@@ -2,12 +2,13 @@ angular.module('playCtrl', [])
   .controller('PlayController', function ($scope, $rootScope, Play,$sce) {
 
     $scope.videos = [];
-
+    $scope.subreddits = ["videos", "deepIntoYouTube", "documentaries", "music", "gaming", "ted", "woahTube", "asmr", "contagiousLaughter", "wtf"];
+    $scope.sr = "";
     $scope.getVideosFromSubreddit = function (subreddit, type, limit){
       Play.getVideosFromSubreddit(subreddit, type, limit)
         .success(function (data) {
+          $scope.videos = [];
           createVideoList(data.data.children);
-          console.log(data.data.children.length);
           if($scope.videos.length!=0)
             $scope.playVideoUrl =  $sce.trustAsHtml($scope.videos[0].embedHtml);
           else
@@ -33,10 +34,15 @@ angular.module('playCtrl', [])
           }
         }
       }
-      console.log($scope.videos)
+    };
+
+    $scope.addSubreddit = function () {
+      $scope.subreddits.push($scope.sr);
+      $scope.getVideosFromSubreddit($scope.sr, 'hot', 100);
+      $scope.sr = ""
     };
 
     //onload default
-    $scope.getVideosFromSubreddit('videos', 'hot', 80)
+    $scope.getVideosFromSubreddit('videos', 'hot', 100)
 
   });
