@@ -1,12 +1,17 @@
 angular.module('playCtrl', [])
   .controller('PlayController', function ($scope, $rootScope, Play,$sce) {
 
-    $scope.getVideosFromSubreddit = function (subreddit, type){
-      Play.getVideos(subreddit, type)
+    $scope.videos = [];
+
+    $scope.getVideosFromSubreddit = function (subreddit, type, limit){
+      Play.getVideosFromSubreddit(subreddit, type, limit)
         .success(function (data) {
-          var children = data.data.children;
-          $scope.videos = createVideoList(children);
-          $scope.playVideoUrl =  $sce.trustAsHtml($scope.videos[0].embedHtml);
+          createVideoList(data.data.children);
+          console.log(data.data.children.length);
+          if($scope.videos.length!=0)
+            $scope.playVideoUrl =  $sce.trustAsHtml($scope.videos[0].embedHtml);
+          else
+            $scope.playVideoUrl =  $sce.trustAsHtml('<h1>No videos in this subreddit :(</h1>');
         });
     };
 
@@ -15,25 +20,23 @@ angular.module('playCtrl', [])
     };
 
     var createVideoList = function (children) {
-      var videos = [];
-      var count = 0;
-      for(i=0; i<children.length && count<10; i++){
+      for(i=0; i<children.length; i++){
+        child = children[i];
         temp = {};
-        if(children[i].data.media != null){
-          if(children[i].data.media.oembed.type == 'video'){
-            temp['thumbnailUrl'] = children[i].data.media.oembed.thumbnail_url;
+        if(child.data.media != null){
+          if(child.data.media.oembed.type == 'video'){
+            temp['thumbnailUrl'] = child.data.media.oembed.thumbnail_url;
             embedHtml = document.createElement('div');
-            embedHtml.innerHTML = children[i].data.media.oembed.html;
+            embedHtml.innerHTML = child.data.media.oembed.html;
             temp['embedHtml'] = embedHtml.textContent;
-            videos.push(temp);
-            count = count+1;
+            $scope.videos.push(temp);
           }
         }
       }
-      return videos;
+      console.log($scope.videos)
     };
-    
+
     //onload default
-    $scope.getVideosFromSubreddit('videos', 'top')
+    $scope.getVideosFromSubreddit('videos', 'hot', 80)
 
   });
