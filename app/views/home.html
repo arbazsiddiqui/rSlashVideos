@@ -34,11 +34,15 @@
       </div>
       <div id="content">
         <div ng-bind-html="playVideoUrl"></div>
+        <h3>{{playVideoTitle}}</h3>
+        <h6><a href="{{playVideoRedditLink}}">View on Reddit</a></h6>
       </div>
       <div id="videoList">
         <ul class="list-group">
           <li ng-repeat="video in videos" class="list-group-item">
-            <a ng-click="playVideo(video.embedHtml)"><img width="175" height="125" ng-src="{{video.thumbnailUrl}}"></a>
+            <a ng-click="playVideo(video.embedHtml)"><img width="175" height="125" ng-src="{{video.thumbnailUrl}}">
+            <h5>{{video.title}}</h5>
+            </a>
           </li>
         </ul>
       </div>
