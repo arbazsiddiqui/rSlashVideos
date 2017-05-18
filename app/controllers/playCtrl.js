@@ -10,10 +10,7 @@ angular.module('playCtrl', [])
           $scope.videos = [];
           createVideoList(data.data.children);
           if($scope.videos.length!=0){
-            $scope.playVideoUrl =  $sce.trustAsHtml($scope.videos[0].embedHtml);
-            $scope.playVideoTitle = $scope.videos[0].title;
-            $scope.playVideoSource = $scope.videos[0].provider;
-            $scope.playVideoRedditLink = $scope.videos[0].redditLink;
+            $scope.playVideo($scope.videos[0])
           }
             
           else
