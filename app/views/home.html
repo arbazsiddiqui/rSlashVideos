@@ -40,7 +40,7 @@
       <div id="videoList">
         <ul class="list-group">
           <li ng-repeat="video in videos" class="list-group-item">
-            <a ng-click="playVideo(video.embedHtml)"><img width="175" height="125" ng-src="{{video.thumbnailUrl}}">
+            <a ng-click="playVideo(video)"><img width="175" height="125" ng-src="{{video.thumbnailUrl}}">
             <h5>{{video.title}}</h5>
             </a>
           </li>

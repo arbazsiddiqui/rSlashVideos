@@ -21,11 +21,11 @@ angular.module('playCtrl', [])
         });
     };
 
-    $scope.playVideo = function (embedHtml) {
-      $scope.playVideoUrl = $sce.trustAsHtml(embedHtml);
-      $scope.playVideoTitle = $scope.videos[0].title;
-      $scope.playVideoSource = $scope.videos[0].provider;
-      $scope.playVideoRedditLink = $scope.videos[0].redditLink;
+    $scope.playVideo = function (video) {
+      $scope.playVideoUrl = $sce.trustAsHtml(video.embedHtml);
+      $scope.playVideoTitle = video.title;
+      $scope.playVideoSource = video.provider;
+      $scope.playVideoRedditLink = video.redditLink;
     };
 
     var createVideoList = function (children) {
@@ -38,7 +38,7 @@ angular.module('playCtrl', [])
             embedHtml = document.createElement('div');
             embedHtml.innerHTML = child.data.media.oembed.html;
             temp['embedHtml'] = embedHtml.textContent;
-            temp['title'] = child.data.media.oembed.title;
+            temp['title'] = child.data.title;
             temp['provider'] = child.data.media.oembed.provider_name;
             temp['redditLink'] = "https://www.reddit.com" + child.data.permalink;
             $scope.videos.push(temp);
