@@ -4,7 +4,7 @@ angular.module('playService', [])
     var baseUrl = 'https://api.reddit.com/r/';
     playFactory.getVideosFromSubreddit = function (subreddit, listing, limit) {
       var url = baseUrl+subreddit+'/'+listing+'.json?limit='+limit;
-      if(listing=='topAll')
+      if(listing=='topAllTime')
         url = baseUrl+subreddit+'/top.json?limit='+limit+'&t=all';
       else if(listing=='topHour')
         url = baseUrl+subreddit+'/top.json?limit='+limit+'&t=hour';
