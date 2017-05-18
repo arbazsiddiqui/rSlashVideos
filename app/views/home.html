@@ -15,6 +15,7 @@
   </nav>
   <div class="container">
     <div class="row">
+
       <div id="srList">
         <ul class="list-group">
           <li ng-repeat="subreddit in subreddits" class="list-group-item">
@@ -32,11 +33,14 @@
             </li>
         </ul>
       </div>
+
       <div id="content">
+        <button class="btn btn-default" type="submit" ng-click="playRandomVideo()">Play a Random Video</button>
         <div ng-bind-html="playVideoUrl"></div>
         <h3>{{playVideoTitle}}</h3>
         <h6><a href="{{playVideoRedditLink}}">View on Reddit</a></h6>
       </div>
+
       <div id="videoList">
         <ul class="list-group">
           <li ng-repeat="video in videos" class="list-group-item">

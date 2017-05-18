@@ -12,7 +12,6 @@ angular.module('playCtrl', [])
           if($scope.videos.length!=0){
             $scope.playVideo($scope.videos[0])
           }
-            
           else
             $scope.playVideoUrl =  $sce.trustAsHtml('<h1>No videos in this subreddit :(</h1>');
         });
@@ -21,7 +20,6 @@ angular.module('playCtrl', [])
     $scope.playVideo = function (video) {
       $scope.playVideoUrl = $sce.trustAsHtml(video.embedHtml);
       $scope.playVideoTitle = video.title;
-      $scope.playVideoSource = video.provider;
       $scope.playVideoRedditLink = video.redditLink;
     };
 
@@ -36,7 +34,6 @@ angular.module('playCtrl', [])
             embedHtml.innerHTML = child.data.media.oembed.html;
             temp['embedHtml'] = embedHtml.textContent;
             temp['title'] = child.data.title;
-            temp['provider'] = child.data.media.oembed.provider_name;
             temp['redditLink'] = "https://www.reddit.com" + child.data.permalink;
             $scope.videos.push(temp);
           }
@@ -48,6 +45,20 @@ angular.module('playCtrl', [])
       $scope.subreddits.push($scope.sr);
       $scope.getVideosFromSubreddit($scope.sr, 'hot', 100);
       $scope.sr = ""
+    };
+
+    $scope.playRandomVideo = function () {
+      Play.getVideosFromSubreddit('videos', 'random', null)
+        .success(function (data) {
+            console.log(data);
+            randomvideo = {};
+            randomvideo['title'] = data[0].data.children[0].data.title;
+            randomvideo['redditLink'] = "https://www.reddit.com" + data[0].data.children[0].data.permalink;
+            embedHtml = document.createElement('div');
+            embedHtml.innerHTML = data[0].data.children[0].data.media.oembed.html;
+            randomvideo['embedHtml'] = embedHtml.textContent;
+            $scope.playVideo(randomvideo);
+        });
     };
 
     //onload default

@@ -3,7 +3,10 @@ angular.module('playService', [])
     var playFactory = {};
     var baseUrl = 'https://api.reddit.com/r/';
     playFactory.getVideosFromSubreddit = function (subreddit, type, limit) {
-      url = baseUrl+subreddit+'/'+type+'.json?limit='+limit;
+      if(limit==null)
+        url = baseUrl+subreddit+'/'+type+'.json';
+      else
+        url = baseUrl+subreddit+'/'+type+'.json?limit='+limit;
       return $http.get(url);
     };
 
