@@ -17,9 +17,13 @@
     <div class="row">
 
       <div id="srList">
+        <select ng-options="listing for listing in listings"
+                ng-model="listing"
+                ng-change="applySubredditListing()">
+        </select>
         <ul class="list-group">
           <li ng-repeat="subreddit in subreddits" class="list-group-item">
-            <a ng-click="getVideosFromSubreddit(subreddit, 'hot', 100)">{{subreddit}}</a>
+            <a ng-click="getVideosFromSubreddit(subreddit, listing, 100)">{{subreddit}}</a>
           </li>
           <li>
             <form ng-submit="addSubreddit()">

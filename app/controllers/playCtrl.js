@@ -4,10 +4,14 @@ angular.module('playCtrl', [])
     $scope.videos = [];
     $scope.subreddits = ["videos", "deepIntoYouTube", "documentaries", "music", "gaming", "ted", "woahTube", "asmr", "contagiousLaughter", "wtf"];
     $scope.sr = "";
-    
-    $scope.getVideosFromSubreddit = function (subreddit, type, limit){
-      Play.getVideosFromSubreddit(subreddit, type, limit)
+    $scope.listings= ["hot", "topAll", "topHour", "topDay", "topWeek", "topMonth", "topYear"];
+    $scope.listing = "hot";
+    $scope.currentSubreddit = "videos";
+
+    $scope.getVideosFromSubreddit = function (subreddit, listing, limit){
+      Play.getVideosFromSubreddit(subreddit, listing, limit)
         .success(function (data) {
+          $scope.currentSubreddit = subreddit;
           $scope.videos = [];
           createVideoList(data.data.children);
           if($scope.videos.length!=0){
@@ -44,7 +48,7 @@ angular.module('playCtrl', [])
 
     $scope.addSubreddit = function () {
       $scope.subreddits.push($scope.sr);
-      $scope.getVideosFromSubreddit($scope.sr, 'hot', 100);
+      $scope.getVideosFromSubreddit($scope.sr, $scope.listing, 100);
       $scope.sr = ""
     };
 
@@ -71,8 +75,12 @@ angular.module('playCtrl', [])
         $scope.videos[randomIndex] = temporaryValue;
       }
     };
+    
+    $scope.applySubredditListing = function () {
+      $scope.getVideosFromSubreddit($scope.currentSubreddit, $scope.listing, 100)
+    };
 
     //onload default
-    $scope.getVideosFromSubreddit('videos', 'hot', 100)
+    $scope.getVideosFromSubreddit($scope.currentSubreddit, $scope.listing, 100)
 
   });
