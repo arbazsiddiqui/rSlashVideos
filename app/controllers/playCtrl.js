@@ -4,6 +4,7 @@ angular.module('playCtrl', [])
     $scope.videos = [];
     $scope.subreddits = ["videos", "deepIntoYouTube", "documentaries", "music", "gaming", "ted", "woahTube", "asmr", "contagiousLaughter", "wtf"];
     $scope.sr = "";
+    
     $scope.getVideosFromSubreddit = function (subreddit, type, limit){
       Play.getVideosFromSubreddit(subreddit, type, limit)
         .success(function (data) {
@@ -50,7 +51,6 @@ angular.module('playCtrl', [])
     $scope.playRandomVideo = function () {
       Play.getVideosFromSubreddit('videos', 'random', null)
         .success(function (data) {
-            console.log(data);
             randomvideo = {};
             randomvideo['title'] = data[0].data.children[0].data.title;
             randomvideo['redditLink'] = "https://www.reddit.com" + data[0].data.children[0].data.permalink;
@@ -59,6 +59,17 @@ angular.module('playCtrl', [])
             randomvideo['embedHtml'] = embedHtml.textContent;
             $scope.playVideo(randomvideo);
         });
+    };
+
+    $scope.shuffle = function () {
+      var currentIndex = $scope.videos.length, temporaryValue, randomIndex;
+      while (0 !== currentIndex) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+        temporaryValue = $scope.videos[currentIndex];
+        $scope.videos[currentIndex] = $scope.videos[randomIndex];
+        $scope.videos[randomIndex] = temporaryValue;
+      }
     };
 
     //onload default
