@@ -25,7 +25,7 @@
                 ng-change="applySubredditListing()">
         </select>
         <ul class="list-group">
-          <li ng-repeat="subreddit in subreddits" class="list-group-item">
+          <li ng-class="{active: isActive(subreddit)}" ng-repeat="subreddit in subreddits" class="list-group-item">
             <a ng-click="getVideosFromSubreddit(subreddit, listing, 100)">{{subreddit}}</a>
           </li>
         </ul>

@@ -13,9 +13,9 @@ angular.module('playCtrl', [])
     $scope.getVideosFromSubreddit = function (subreddit, listing, limit) {
       $scope.playVideoUrl = $sce.trustAsHtml('<h2>Loading '+listing+' videos from r/'+subreddit+'...'+'</h2>');
       resetScope();
+      $scope.currentSubreddit = subreddit;
       Play.getVideosFromSubreddit(subreddit, listing, limit)
         .success(function (data) {
-          $scope.currentSubreddit = subreddit;
           createVideoList(data.data.children);
           if ($scope.videos.length != 0)
             $scope.playVideo($scope.videos[0]);
@@ -81,6 +81,10 @@ angular.module('playCtrl', [])
 
     $scope.reload = function () {
       $window.location.reload()
+    };
+
+    $scope.isActive = function(item) {
+      return $scope.currentSubreddit === item;
     };
 
     var createVideoList = function (children) {
