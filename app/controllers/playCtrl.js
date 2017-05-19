@@ -2,7 +2,7 @@ angular.module('playCtrl', [])
   .controller('PlayController', function ($scope, $rootScope, Play,$sce) {
 
     $scope.videos = [];
-    $scope.subreddits = ["videos", "deepIntoYouTube", "documentaries", "music", "gaming", "ted", "woahTube", "asmr", "contagiousLaughter", "wtf"];
+    $scope.subreddits = ["videos", "deepIntoYouTube", "documentaries", "music", "gaming", "ted", "woahTube", "asmr", "contagiousLaughter"];
     $scope.sr = "";
     $scope.listings= ["hot", "topAllTime", "topHour", "topDay", "topWeek", "topMonth", "topYear"];
     $scope.listing = "hot";
