@@ -8,7 +8,7 @@ angular.module('playCtrl', [])
     $scope.listing = "hot";
     $scope.currentSubreddit = "videos";
     $scope.currentVideoIndex = 0;
-    $scope.playVideoUrl =  $sce.trustAsHtml('<iframe width="600" height="338"></iframe>');
+    $scope.playVideoUrl =  $sce.trustAsHtml('<iframe></iframe>');
     $scope.getVideosFromSubreddit = function (subreddit, listing, limit){
       resetScope();
       Play.getVideosFromSubreddit(subreddit, listing, limit)
@@ -43,8 +43,7 @@ angular.module('playCtrl', [])
             temp['thumbnailUrl'] = child.data.media.oembed.thumbnail_url;
             embedHtml = document.createElement('div');
             embedHtml.innerHTML = child.data.media.oembed.html;
-            temp['embedHtml'] = embedHtml.textContent.replace(/width=\"\d\d\d\d?\"\sheight=\"\d\d\d\d?\"/, 'width=\"600\" height=\"338\"');
-            console.log(temp['embedHtml']);
+            temp['embedHtml'] = embedHtml.textContent;
             temp['title'] = child.data.title;
             temp['redditLink'] = "https://www.reddit.com" + child.data.permalink;
             $scope.videos.push(temp);
@@ -73,7 +72,7 @@ angular.module('playCtrl', [])
             randomvideo['title'] = data[0].data.children[0].data.title;
             randomvideo['redditLink'] = "https://www.reddit.com" + data[0].data.children[0].data.permalink;
             embedHtml = document.createElement('div');
-            embedHtml.innerHTML = data[0].data.children[0].data.media.oembed.html.replace(/width=\\\"\d\d\d\\d?\"\sheight=\\\"\d\d\d\d?\\\"/, 'width=\"600\" height=\"338\"');
+            embedHtml.innerHTML = data[0].data.children[0].data.media.oembed.html;
             randomvideo['embedHtml'] = embedHtml.textContent;
             $scope.playVideo(randomvideo);
         });
