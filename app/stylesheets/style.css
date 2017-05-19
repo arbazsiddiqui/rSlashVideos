@@ -5,9 +5,9 @@
     border-radius: 0;
 }
 
-.navbar-default .navbar-brand {
-    color: #fff;
-    padding-top: 23px;
+.navbar-brand {
+    color: #fff !important;
+    padding-top: 20%;
 }
 
 .btn-default {
