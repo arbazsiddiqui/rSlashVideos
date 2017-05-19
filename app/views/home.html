@@ -17,7 +17,7 @@
     <div class="row">
 
       <div id="srList">
-        <select ng-options="listing for listing in listings"
+        <select width="80%" class="form-control dd" ng-options="listing for listing in listings"
                 ng-model="listing"
                 ng-change="applySubredditListing()">
         </select>
@@ -25,33 +25,32 @@
           <li ng-repeat="subreddit in subreddits" class="list-group-item">
             <a ng-click="getVideosFromSubreddit(subreddit, listing, 100)">{{subreddit}}</a>
           </li>
-          <li>
-            <form ng-submit="addSubreddit()">
-              <div class="input-group">
-                <input ng-model="sr" type="text" class="form-control" placeholder="subreddit">
+        </ul>
+        <form ng-submit="addSubreddit()">
+          <div class="input-group">
+            <input ng-model="sr" type="text" class="form-control" placeholder="subreddit">
               <span class="input-group-btn">
               <button class="btn btn-default" type="submit">Load</button>
               </span>
-              </div>
-            </form>
-            </li>
-        </ul>
+          </div>
+        </form>
       </div>
 
       <div id="content">
         <button class="btn btn-default" ng-click="playRandomVideo()">Play a Random Video</button>
-        <button class="btn btn-default" ng-click="shuffle()">Shuffle Playlist</button>
+        <button class="btn btn-default " ng-click="shuffle()">Shuffle Playlist</button>
         <div ng-bind-html="playVideoUrl"></div>
         <button class="btn btn-default" ng-click="previous()">Prev</button>
         <button class="btn btn-default" ng-click="next()">Next</button>
-        <h3>{{playVideoTitle}}</h3>
+        <h4>{{playVideoTitle}}</h4>
         <h6><a href="{{playVideoRedditLink}}">View on Reddit</a></h6>
       </div>
 
       <div id="videoList">
         <ul class="list-group">
+          <li class="list-group-item">Listing {{listing}} videos from r/{{currentSubreddit}}</li>
           <li ng-repeat="video in videos" class="list-group-item">
-            <a ng-click="playVideo(video, $index)"><img width="175" height="125" ng-src="{{video.thumbnailUrl}}">
+            <a ng-click="playVideo(video, $index)"><img width="205" height="125" ng-src="{{video.thumbnailUrl}}">
             <h5>{{video.title}}</h5>
             </a>
           </li>

@@ -15,38 +15,48 @@
     background-color: #08538c;
     color : #fff;
 }
+.list-group-item {
+    text-align: center;
+    background-color: #eff2f3;
+}
+
+body {
+    background-color: #fafafa;
+}
+
+.dd {
+    width : 70%;
+}
+
+a {
+    color : #333;
+}
 
 #videoList {
     position: fixed;
-    width: 21%;
+    width: 23%;
     background-color: #FFF;
     overflow-y: scroll;
     top: 12%;
     bottom: 0;
-    left : 79%;
+    left : 77%;
 }
 
 #content {
     position: relative;
-    margin-left: 24%;
-    margin-right: 24%;
+    margin-left: 20%;
+    margin-right: 28.5%;
 }
 
 
 #srList {
     position: fixed;
-    width: 21%;
-    background-color: #FFF;
+    width: 15%;
+    background-color: #eff2f3;
     overflow-y: scroll;
     top: 12%;
     bottom: 0;
     left : 0;
-}
-
-#videoFrame {
-    border-radius: 3px;
-    width: 600px;
-    height : 338px;
 }
 
 iframe {
