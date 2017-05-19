@@ -16,7 +16,7 @@ angular.module('playService', [])
         url = baseUrl+subreddit+'/top.json?limit='+limit+'&t=month';
       else if(listing=='topYear')
         url = baseUrl+subreddit+'/top.json?limit='+limit+'&t=year';
-      console.log(url);
+
       return $http.get(url);
     };
 

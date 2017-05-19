@@ -9,18 +9,20 @@ angular.module('playCtrl', [])
     $scope.currentSubreddit = "videos";
     $scope.currentVideoIndex = 0;
     $scope.getVideosFromSubreddit = function (subreddit, listing, limit){
+      resetScope();
       Play.getVideosFromSubreddit(subreddit, listing, limit)
         .success(function (data) {
           $scope.currentSubreddit = subreddit;
-          $scope.videos = [];
-          $scope.currentVideoIndex = 0;
           createVideoList(data.data.children);
           if($scope.videos.length!=0){
             $scope.playVideo($scope.videos[0])
           }
           else
             $scope.playVideoUrl =  $sce.trustAsHtml('<h1>No videos in this subreddit :(</h1>');
-        });
+        })
+        .error(function (err) {
+          $scope.playVideoUrl =  $sce.trustAsHtml('<h1>Subreddit not found :(</h1>');
+        })
     };
 
     $scope.playVideo = function (video, index) {
@@ -47,6 +49,13 @@ angular.module('playCtrl', [])
           }
         }
       }
+    };
+
+    var resetScope = function () {
+      $scope.videos = [];
+      $scope.currentVideoIndex = 0;
+      $scope.playVideoTitle = "";
+      $scope.playVideoRedditLink = "";
     };
 
     $scope.addSubreddit = function () {
