@@ -1,5 +1,5 @@
 angular.module('playCtrl', [])
-  .controller('PlayController', function ($scope, $rootScope, Play,$sce) {
+  .controller('PlayController', function ($scope, $rootScope, Play,$sce, $window) {
 
     $scope.videos = [];
     $scope.subreddits = ["videos", "deepIntoYouTube", "documentaries", "music", "gaming", "ted", "woahTube", "asmr", "contagiousLaughter"];
@@ -104,5 +104,9 @@ angular.module('playCtrl', [])
     $scope.previous = function () {
       $scope.playVideo($scope.videos[$scope.currentVideoIndex-1]);
       $scope.currentVideoIndex = $scope.currentVideoIndex-1;
+    }
+    
+    $scope.reload = function () {
+      $window.location.reload()
     }
   });
