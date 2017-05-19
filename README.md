@@ -17,7 +17,7 @@ Main driving force for working on this project was to find a solution for not ha
 
 ### Usage
 
-Hosted using github pages [here](https://arbazsiddiqui.github.io/Reddit-Play/app/index.html). Though, if for some reason you find it unaccessable, here are the steps to run it locally on your machine :
+Hosted using github pages [here](https://arbazsiddiqui.github.io/Reddit-Play/app/index.html). Though, for some reason, if you find it unaccessable, here are the steps to run it locally on your machine :
 
 * Clone this repo ```git clone https://github.com/arbazsiddiqui/Reddit-Play```
 * Go to index page using ```cd Reddit-Play/app```
@@ -27,3 +27,9 @@ Hosted using github pages [here](https://arbazsiddiqui.github.io/Reddit-Play/app
 
 ### Contributing
 Would love it. Create a new issue or send a PR.
+
+### Todo
+- [ ] AutoPlay Feature
+- [ ] Implement OAuth
+- [ ] User related features
+- [ ] Improve UI
