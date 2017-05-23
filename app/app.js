@@ -1,1 +1,1 @@
-angular.module('redditPlay', ['playCtrl', 'playService']);
+angular.module('rSlashVideos', ['playCtrl', 'playService']);
