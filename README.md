@@ -20,7 +20,7 @@ The intent of pursuing this project was to easily and quickly gain access to the
 Hosted using github pages [here](http://rslashvideos.com/).
 Though, for some reason, if you find it unaccessable, here are the steps to run it locally on your machine :
 
-* Clone this repo ```git clone git clone https://github.com/arbazsiddiqui/rSlashVideos && cd rSlashVideos```
+* Clone this repo ```git clone https://github.com/arbazsiddiqui/rSlashVideos && cd rSlashVideos```
 * Serve the app using ```python -m SimpleHTTPServer```
 * Go to ```http://localhost:8000``` in your browser
 * Enjoy :)
