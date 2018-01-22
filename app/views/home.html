@@ -47,7 +47,17 @@
         <button class="btn btn-default" ng-click="next()">Next</button>
         <h4>{{playVideoTitle}}</h4>
         <h6><a href="{{playVideoRedditLink}}">View on Reddit</a></h6>
+        <button class="btn btn-default " ng-click="comments()">View Comments</button>
+
+        <br><br>
+        <div>
+          <span ng-repeat="comment in commentList">
+            <b>Comment {{$index+1}} :-</b> {{comment.body}} <br><br>
+          </span>
+        </div>
       </div>
+
+
 
       <div id="videoList">
         <ul class="list-group">
