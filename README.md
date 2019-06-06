@@ -2,10 +2,10 @@
 
 "Watch" any subreddit. Fetches videos from any subreddit and includes filters like hot, top of all time, top of year etc.
 
-[Live](http://rslashvideos.com/)
+[Live](http://arbazsiddiqui.me/rSlashVideos/)
 
 ### Motivation
-The intent of pursuing this project was to easily and quickly gain access to the cool videos without deliberately looking up for them while having a meal. Hence, [rSlashVideos](http://rslashvideos.com/)
+The intent of pursuing this project was to easily and quickly gain access to the cool videos without deliberately looking up for them while having a meal. Hence, [rSlashVideos](http://arbazsiddiqui.me/rSlashVideos/)
 
 ### Features
 * Support for every video domain like youtube, vimeo etc.
@@ -17,7 +17,7 @@ The intent of pursuing this project was to easily and quickly gain access to the
 
 ### Usage
 
-Hosted using github pages [here](http://rslashvideos.com/).
+Hosted using github pages [here](http://arbazsiddiqui.me/rSlashVideos/).
 Though, for some reason, if you find it unaccessable, here are the steps to run it locally on your machine :
 
 * Clone this repo ```git clone https://github.com/arbazsiddiqui/rSlashVideos && cd rSlashVideos```
