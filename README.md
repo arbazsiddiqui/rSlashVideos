@@ -31,6 +31,5 @@ Would love it. Create a new issue or send a PR.
 ### Todo
 - [ ] AutoPlay Feature
 - [ ] Implement OAuth
-- [ ] User related features
 - [ ] Add Tests
 - [ ] Improve UI
