@@ -1,5 +1,5 @@
 angular.module('playCtrl', [])
-  .controller('PlayController', function ($scope, $rootScope, Play, $sce, $window) {
+  .controller('PlayController', function ($scope, $rootScope, Play, $sce, $window, CommentService) {
 
     $scope.videos = [];
     $scope.subreddits = ["videos", "deepIntoYouTube", "documentaries", "music", "gaming", "ted", "woahTube", "asmr", "contagiousLaughter"];
@@ -8,7 +8,28 @@ angular.module('playCtrl', [])
     $scope.listing = "hot";
     $scope.currentSubreddit = "videos";
     $scope.currentVideoIndex = 0;
-    $scope.playVideoUrl = $sce.trustAsHtml('<iframe></iframe>');
+    $scope.playVideoUrl = $sce.trustAsHtml('<iframe id="frame"></iframe>');
+    $scope.commentList = [];
+
+    $scope.comments = function() {
+      CommentService.getComments($scope.currentSubreddit, $scope.videos[$scope.currentVideoIndex].id)
+        .success(function(data) {
+          fetchComments(data[1].data.children);
+        })
+        .error(function(err) {
+          console.log("error");
+        })
+    }
+
+    var fetchComments = function(children) {
+      for (var i=0;i<children.length;i++) {
+        if (children[i].kind == "t1") {
+          var comment = {};
+          comment.body = children[i].data.body;
+          $scope.commentList.push(comment);
+        }
+      }
+    }
 
     $scope.getVideosFromSubreddit = function (subreddit, listing, limit) {
       $scope.playVideoUrl = $sce.trustAsHtml('<h2>Loading '+listing+' videos from r/'+subreddit+'...'+'</h2>');
@@ -17,10 +38,12 @@ angular.module('playCtrl', [])
       Play.getVideosFromSubreddit(subreddit, listing, limit)
         .success(function (data) {
           createVideoList(data.data.children);
-          if ($scope.videos.length != 0)
+          if ($scope.videos.length != 0){
             $scope.playVideo($scope.videos[0]);
-          else
+          }
+          else{
             $scope.playVideoUrl = $sce.trustAsHtml('<h1>No videos in this subreddit :(</h1>');
+          }
         })
         .error(function (err) {
           $scope.playVideoUrl = $sce.trustAsHtml('<h1>Subreddit not found :(</h1>');
@@ -33,6 +56,8 @@ angular.module('playCtrl', [])
       $scope.playVideoUrl = $sce.trustAsHtml(video.embedHtml);
       $scope.playVideoTitle = video.title;
       $scope.playVideoRedditLink = video.redditLink;
+
+      console.log(document.getElementById("frame"));
     };
 
     $scope.addSubreddit = function () {
@@ -99,6 +124,7 @@ angular.module('playCtrl', [])
             temp['embedHtml'] = embedHtml.textContent;
             temp['title'] = child.data.title;
             temp['redditLink'] = "https://www.reddit.com" + child.data.permalink;
+            temp['id'] = child.data.id;
             $scope.videos.push(temp);
           }
         }
